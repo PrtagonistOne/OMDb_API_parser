@@ -19,7 +19,7 @@ def dummy_db_instances():
     return Episode.objects.create(
         title='Winter Is Coming',
         released='2011-04-17',
-        imdbRating=8.9,
+        imdb_rating=8.9,
         runtime='62 min',
         poster='https://m.media-amazon.com/images/M'
         '/MV5BMmVhODQ1NmUtMzJiYi00MGNiLWExNmQtYmUxNGJmY2U5ZmJlXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg',

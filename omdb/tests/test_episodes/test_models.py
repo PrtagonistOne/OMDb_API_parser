@@ -11,7 +11,7 @@ def test_episode_create(dummy_db_instances):
     episode.save()
     # then
     assert Episode.objects.count() == 1
-    assert isinstance(episode.imdbRating, float)
+    assert isinstance(episode.imdb_rating, float)
 
 
 @pytest.mark.django_db

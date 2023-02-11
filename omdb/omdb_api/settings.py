@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Application definition
-DEBUG = os.environ.get('DEBUG', '0')
+DEBUG = os.environ.get('DEBUG', 1)
 
 INSTALLED_APPS = [
     'django.contrib.admin',

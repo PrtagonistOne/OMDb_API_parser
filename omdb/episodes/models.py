@@ -29,7 +29,7 @@ class Actor(models.Model):
 class Episode(models.Model):
     title = models.CharField(max_length=200, blank=False, unique=True)
     released = models.DateField(blank=False, unique=False)
-    imdbRating = models.FloatField(blank=False, unique=False)
+    imdb_rating = models.FloatField(blank=False, unique=False)
     runtime = models.CharField(max_length=10, unique=False, blank=False)
     poster = models.CharField(max_length=500, unique=True, blank=False)
     season = models.ForeignKey(Season, on_delete=models.CASCADE, null=True)
