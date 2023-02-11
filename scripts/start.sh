@@ -16,6 +16,7 @@ if [ "$DATABASE" = "postgres" ]
 
 # shellcheck disable=SC2164
 cd omdb/
-python manage.py makemigrations
+python manage.py flush --no-input
 python manage.py migrate
+pytest
 python manage.py runserver 0.0.0.0:7000

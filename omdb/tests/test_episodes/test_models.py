@@ -4,9 +4,9 @@ from episodes.models import Episode, Genre, Actor
 
 
 @pytest.mark.django_db
-def test_episode_create(episode_dummy_instances):
+def test_episode_create(dummy_db_instances):
     #  given
-    episode = episode_dummy_instances
+    episode = dummy_db_instances
     # when
     episode.save()
     # then
@@ -15,9 +15,9 @@ def test_episode_create(episode_dummy_instances):
 
 
 @pytest.mark.django_db
-def test_genre_create(episode_dummy_instances):
+def test_genre_create(dummy_db_instances):
     # given
-    episode = episode_dummy_instances
+    episode = dummy_db_instances
     action_genre = Genre.objects.all().get(name='Action')
     adventure_genre = Genre.objects.all().get(name='Adventure')
     drama_genre = Genre.objects.all().get(name='Drama')
@@ -30,9 +30,9 @@ def test_genre_create(episode_dummy_instances):
 
 
 @pytest.mark.django_db
-def test_actors_create(episode_dummy_instances):
+def test_actors_create(dummy_db_instances):
     # given
-    episode = episode_dummy_instances
+    episode = dummy_db_instances
     actor1 = Actor.objects.get(last_name='Bean')
     actor2 = Actor.objects.get(last_name='Addy')
     actor3 = Actor.objects.get(last_name='Coster-Waldau')

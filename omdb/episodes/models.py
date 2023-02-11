@@ -1,5 +1,7 @@
 from django.db import models
 
+from seasons.models import Season
+
 
 # Create your models here.
 
@@ -30,6 +32,7 @@ class Episode(models.Model):
     imdbRating = models.FloatField(blank=False, unique=False)
     runtime = models.CharField(max_length=10, unique=False, blank=False)
     poster = models.CharField(max_length=500, unique=True, blank=False)
+    season = models.ForeignKey(Season, on_delete=models.CASCADE, null=True)
     genre = models.ManyToManyField(Genre)
     actors = models.ManyToManyField(Actor)
 
