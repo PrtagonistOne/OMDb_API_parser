@@ -1,14 +1,13 @@
-import pytest
-
-from episodes.models import Episode
-
-
-@pytest.mark.django_db
-def test_blog_create(episode_dummy_instances):
-    #  given
-    episode = episode_dummy_instances
-    # when
-    episode.save()
-    # then
-    assert Episode.objects.count() == 1
-    assert isinstance(episode.imdbRating, float)
+# import pytest
+#
+# from seasons.models import Season
+#
+#
+# @pytest.mark.django_db
+# def test_season_model():
+#     # given
+#     season = Season.objects.create(
+#         title="Game of Thrones",
+#         season_number=1,
+#         totalSeasons=8,
+#     )
