@@ -12,6 +12,8 @@ services:
       - postgres
     depends_on:
       - postgres
+    expose:
+      - 7000
   nginx:
     image: nginx:latest
     ports:

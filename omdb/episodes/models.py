@@ -33,8 +33,12 @@ class Actor(models.Model):
     last_name = models.CharField(max_length=50, blank=False)
     episode = models.ManyToManyField(Episode, related_name='actors')
 
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
     class Meta:
         ordering = ['first_name']
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return self.full_name

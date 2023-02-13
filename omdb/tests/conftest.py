@@ -16,13 +16,13 @@ def dummy_db_instances() -> None:
         '/MV5BMmVhODQ1NmUtMzJiYi00MGNiLWExNmQtYmUxNGJmY2U5ZmJlXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg',
     )
 
-    Genre.objects.create(name='Action', episode=episode)
-    Genre.objects.create(name='Adventure', episode=episode)
-    Genre.objects.create(name='Drama', episode=episode)
+    Genre.objects.create(name='Action')
+    Genre.objects.create(name='Adventure')
+    Genre.objects.create(name='Drama')
 
-    Actor.objects.create(first_name='Sean', last_name='Bean', episode=episode)
-    Actor.objects.create(first_name='Mark', last_name='Addy', episode=episode)
-    Actor.objects.create(first_name='Nikolaj', last_name='Coster-Waldau', episode=episode)
+    Actor.objects.create(first_name='Sean', last_name='Bean')
+    Actor.objects.create(first_name='Mark', last_name='Addy')
+    Actor.objects.create(first_name='Nikolaj', last_name='Coster-Waldau')
 
 
 @pytest.fixture()
