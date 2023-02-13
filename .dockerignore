@@ -1,6 +1,6 @@
 .pytest_cache
 *.pyc
-.idea
+.idea/
 venv/
 .DS_Store
 *.sqlite
