@@ -1,26 +1,30 @@
 import pytest
 
 from episodes.models import Episode, Genre, Actor
+from rest_framework.test import APIRequestFactory
 
 
 @pytest.fixture()
-def episode_dummy_instances():
-    genre1 = Genre.objects.create(name='Action')
-    genre2 = Genre.objects.create(name='Adventure')
-    genre3 = Genre.objects.create(name='Drama')
-
-    actor1 = Actor.objects.create(first_name='Sean', last_name='Bean')
-    actor2 = Actor.objects.create(first_name='Mark', last_name='Addy')
-    actor3 = Actor.objects.create(first_name='Nikolaj', last_name='Coster-Waldau')
-
+def dummy_db_instances() -> None:
     episode = Episode.objects.create(
         title='Winter Is Coming',
+        episode_number=1,
         released='2011-04-17',
-        imdbRating=8.9,
+        imdb_rating=8.9,
         runtime='62 min',
         poster='https://m.media-amazon.com/images/M'
-               '/MV5BMmVhODQ1NmUtMzJiYi00MGNiLWExNmQtYmUxNGJmY2U5ZmJlXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg'
+        '/MV5BMmVhODQ1NmUtMzJiYi00MGNiLWExNmQtYmUxNGJmY2U5ZmJlXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg',
     )
-    episode.genre.add(genre1, genre2, genre3)
-    episode.actors.add(actor1, actor2, actor3)
-    return episode
+
+    Genre.objects.create(name='Action')
+    Genre.objects.create(name='Adventure')
+    Genre.objects.create(name='Drama')
+
+    Actor.objects.create(first_name='Sean', last_name='Bean')
+    Actor.objects.create(first_name='Mark', last_name='Addy')
+    Actor.objects.create(first_name='Nikolaj', last_name='Coster-Waldau')
+
+
+@pytest.fixture()
+def crud_APIFactory(dummy_db_instances):
+    return APIRequestFactory()

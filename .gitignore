@@ -1,6 +1,8 @@
 .pytest_cache
 *.pyc
-.idea
+.idea/
 venv/
 env/
 .DS_Store
+*.sqlite
+*.iml
