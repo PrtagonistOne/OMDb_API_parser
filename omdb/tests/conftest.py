@@ -1,6 +1,7 @@
 import pytest
 
 from episodes.models import Episode, Genre, Actor
+from rest_framework.test import APIRequestFactory
 
 
 @pytest.fixture()
@@ -22,3 +23,8 @@ def dummy_db_instances() -> None:
     Actor.objects.create(first_name='Sean', last_name='Bean', episode=episode)
     Actor.objects.create(first_name='Mark', last_name='Addy', episode=episode)
     Actor.objects.create(first_name='Nikolaj', last_name='Coster-Waldau', episode=episode)
+
+
+@pytest.fixture()
+def crud_APIFactory(dummy_db_instances):
+    return APIRequestFactory()

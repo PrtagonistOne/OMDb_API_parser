@@ -23,9 +23,10 @@ def test_genre_create(dummy_db_instances):
     adventure_genre = Genre.objects.all().get(name='Adventure')
     drama_genre = Genre.objects.all().get(name='Drama')
     # then
-    assert episode.genre_set.get(name="Action").name == action_genre.name
-    assert episode.genre_set.get(name="Adventure").name == adventure_genre.name
-    assert episode.genre_set.get(name="Drama").name == drama_genre.name
+    print(episode.genre.all())
+    assert episode.genre.get(name="Action").name == action_genre.name
+    assert episode.genre.get(name="Adventure").name == adventure_genre.name
+    assert episode.genre.get(name="Drama").name == drama_genre.name
 
 
 @pytest.mark.django_db
@@ -37,6 +38,6 @@ def test_actors_create(dummy_db_instances):
     actor2 = Actor.objects.get(last_name='Addy')
     actor3 = Actor.objects.get(last_name='Coster-Waldau')
     # then
-    assert episode.actor_set.get(last_name='Bean').first_name == actor1.first_name
-    assert episode.actor_set.get(last_name='Addy').first_name == actor2.first_name
-    assert episode.actor_set.get(last_name='Coster-Waldau').first_name == actor3.first_name
+    assert episode.actors.get(last_name='Bean').first_name == actor1.first_name
+    assert episode.actors.get(last_name='Addy').first_name == actor2.first_name
+    assert episode.actors.get(last_name='Coster-Waldau').first_name == actor3.first_name

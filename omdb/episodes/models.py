@@ -18,8 +18,8 @@ class Episode(models.Model):
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=50, primary_key=True)
-    episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    episode = models.ManyToManyField(Episode, related_name='genre')
 
     class Meta:
         ordering = ['name']
@@ -31,7 +31,7 @@ class Genre(models.Model):
 class Actor(models.Model):
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
-    episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
+    episode = models.ManyToManyField(Episode, related_name='actors')
 
     class Meta:
         ordering = ['first_name']

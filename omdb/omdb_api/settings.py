@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'episodes',
     'comments',
     'users'
@@ -178,4 +179,4 @@ CSRF_TRUSTED_ORIGINS = [''.join(os.environ.get('CSRF_TRUSTED_ORIGINS'))]
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
-
+USE_X_FORWARDED_HOST = True

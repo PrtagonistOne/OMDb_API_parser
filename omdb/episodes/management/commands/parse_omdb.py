@@ -22,41 +22,20 @@ def clean_db_date() -> None:
             cursor.execute(sql)
 
 
-def genre_check(episode_json: dict, episode_obj: Episode) -> list:
-    genres_check = [genre_c.get('name') for genre_c in Genre.objects.values()]
+def genre_check(episode_json: dict, episode_obj: Episode) -> None:
     genres = episode_json.get('Genre').split(', ')
-    genres_instances = []
-    if genres_check:
-        genres_instances.extend(
-            Genre.objects.create(name=genre, episode=episode_obj)
-            for genre in genres
-            if genre not in genres_check
-        )
-    else:
-        genres_instances.extend(Genre.objects.create(name=genre, episode=episode_obj) for genre in genres)
-    return genres_instances
+    genre_episode_list = [Genre.objects.create(name=genre) for genre in genres]
+    for genre in genre_episode_list:
+        genre.episode.add(episode_obj)
 
 
-def actor_check(episode_json: dict, episode_obj: Episode) -> list:
-    actors_check = [actor_c.get('last_name') for actor_c in Actor.objects.values()]
+def actor_check(episode_json: dict, episode_obj: Episode) -> None:
     actors = episode_json.get('Actors').split(', ')
-    actors_instances = []
-    if actors_check:
-        for actor in actors:
-            first_name = actor.split(' ')[0]
-            last_name = actor.split(' ')[1]
-            if last_name in actors_check:
-                continue
-            actors_instances.append(Actor.objects.create(first_name=first_name, last_name=last_name,
-                                                         episode=episode_obj))
-    else:
-        for actor in actors:
-            first_name = actor.split(' ')[0]
-            last_name = actor.split(' ')[1]
-
-            actors_instances.append(Actor.objects.create(first_name=first_name, last_name=last_name,
-                                                         episode=episode_obj))
-    return actors_instances
+    for actor in actors:
+        first_name = actor.split(' ')[0]
+        last_name = actor.split(' ')[1]
+        actor_obj = Actor.objects.create(first_name=first_name, last_name=last_name)
+        actor_obj.episode.add(episode_obj)
 
 
 def imdb_check(episode_json: dict) -> float or None:
@@ -96,5 +75,5 @@ class Command(BaseCommand):
                 )
                 actor_check(episode_json, episode_obj)
                 genre_check(episode_json, episode_obj)
-            self.stdout.write(f"Season#{season_json.get('Season')} was added")
+            self.stdout.write(f"Season#{season_json.get('Season')} was added and populated.")
 
