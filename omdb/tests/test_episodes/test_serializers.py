@@ -12,6 +12,7 @@ def test_episode_serializer(dummy_db_instances):
     episode_serializer = EpisodeSerializer(Episode.objects.all(), many=True)
     # when
     content = JSONRenderer().render(episode_serializer.data)
+    print(content)
     # then
     assert type(episode_serializer.data) == ReturnList
     assert type(content) == bytes
