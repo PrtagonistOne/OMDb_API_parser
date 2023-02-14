@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework import views
 from rest_framework.response import Response
+from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from users.serializers import CustomUserSerializer
@@ -22,9 +23,12 @@ class CustomUserCreate(generics.CreateAPIView):
 
 
 class CustomUserLogout(views.APIView):
-
     def post(self, request):
-        refresh_token = RefreshToken(request.data.get('refresh_token', ''))
+        try:
+            refresh_token = RefreshToken(request.data.get('refresh_token', ''))
+        except TokenError:
+            return Response('Already logged out', status=status.HTTP_400_BAD_REQUEST)
+
         if refresh_token:
             refresh_token.blacklist()
 

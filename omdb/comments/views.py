@@ -4,15 +4,14 @@ from rest_framework import viewsets
 
 from comments.permissions import IsAuthorOrAdmin
 from comments.serializers import CommentSerializer
-from seasons.models import Episode
+from episodes.models import Episode
+
+from comments.models import Comment
 
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
-
-    def get_queryset(self):
-        instance = Episode.objects.filter(id=self.kwargs.get('episode_id', 1)).prefetch_related('comments').get()
-        return instance.comments.select_related('episode').select_related('user')
+    queryset = Comment.objects.prefetch_related('user', 'episode').all()
 
     def get_permissions(self):
         permission_classes = (permissions.AllowAny, )
@@ -24,5 +23,5 @@ class CommentViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def perform_create(self, serializer):
-        episode_obj = get_object_or_404(Episode, pk=self.kwargs.get('episode_id', 1))
+        episode_obj = Episode.objects.get(pk=self.request.data.get('episode'))
         serializer.save(user=self.request.user, episode=episode_obj)

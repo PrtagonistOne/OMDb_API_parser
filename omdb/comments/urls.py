@@ -1,16 +1,21 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from comments import views
+from comments.views import CommentViewSet
 
-router = DefaultRouter()
-router.register(
-    r'(?P<episode_id>\d+)/comments',
-    views.CommentViewSet,
-    basename="comment"
-)
+comment_list = CommentViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+comment_detail = CommentViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('comments/', comment_list, name='comment-list'),
+    path('comments/<int:pk>/', comment_detail, name='comment-detail'),
 ]

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from seasons.models import Episode
+from episodes.models import Episode
 
 
 class Comment(models.Model):
