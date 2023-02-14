@@ -21,6 +21,3 @@ urlpatterns = [
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("api/token/blacklist/", TokenBlacklistView.as_view(), name="token_blacklist"),
 ]
-
-if bool(settings.DEBUG):
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
