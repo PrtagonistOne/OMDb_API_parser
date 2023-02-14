@@ -4,50 +4,80 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Episode',
+            name="Episode",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200, unique=True)),
-                ('episode_number', models.IntegerField(null=True)),
-                ('released', models.DateField()),
-                ('imdb_rating', models.FloatField(null=True)),
-                ('runtime', models.CharField(max_length=10)),
-                ('poster', models.CharField(max_length=500, unique=True)),
-                ('season', models.IntegerField(null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200, unique=True)),
+                ("episode_number", models.IntegerField(null=True)),
+                ("released", models.DateField()),
+                ("imdb_rating", models.FloatField(null=True)),
+                ("runtime", models.CharField(max_length=10)),
+                ("poster", models.CharField(max_length=500, unique=True)),
+                ("season", models.IntegerField(null=True)),
             ],
             options={
-                'ordering': ['title'],
+                "ordering": ["title"],
             },
         ),
         migrations.CreateModel(
-            name='Genre',
+            name="Genre",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('episode', models.ManyToManyField(related_name='genre', to='episodes.episode')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                (
+                    "episode",
+                    models.ManyToManyField(related_name="genre", to="episodes.episode"),
+                ),
             ],
             options={
-                'ordering': ['name'],
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Actor',
+            name="Actor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=50)),
-                ('last_name', models.CharField(max_length=50)),
-                ('episode', models.ManyToManyField(related_name='actors', to='episodes.episode')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=50)),
+                ("last_name", models.CharField(max_length=50)),
+                (
+                    "episode",
+                    models.ManyToManyField(
+                        related_name="actors", to="episodes.episode"
+                    ),
+                ),
             ],
             options={
-                'ordering': ['first_name'],
+                "ordering": ["first_name"],
             },
         ),
     ]
