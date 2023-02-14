@@ -6,8 +6,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(max_length=255, unique=True)
     verified = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'password']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "password"]
 
     def __str__(self):
         return self.email

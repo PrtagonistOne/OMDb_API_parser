@@ -4,8 +4,12 @@ from episodes.models import Episode
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
-    episode = models.ForeignKey(Episode, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name="comments"
+    )
+    episode = models.ForeignKey(
+        Episode, on_delete=models.CASCADE, related_name="comments"
+    )
     title = models.CharField(max_length=50)
     text_content = models.TextField()
     contains_spoilers = models.BooleanField(default=False)

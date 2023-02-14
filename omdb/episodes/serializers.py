@@ -9,5 +9,13 @@ class EpisodeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Episode
-        fields = ['title', 'released', 'imdb_rating', 'runtime', 'poster', 'genre', 'actors']
+        fields = [
+            "title",
+            "released",
+            "imdb_rating",
+            "runtime",
+            "poster",
+            "genre",
+            "actors",
+        ]
         depth = 1

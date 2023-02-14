@@ -5,24 +5,25 @@ from rest_framework.test import APIRequestFactory
 
 
 @pytest.fixture()
+@pytest.mark.django_db
 def dummy_db_instances() -> None:
-    episode = Episode.objects.create(
-        title='Winter Is Coming',
+    Episode.objects.create(
+        title="Winter Is Coming",
         episode_number=1,
-        released='2011-04-17',
+        released="2011-04-17",
         imdb_rating=8.9,
-        runtime='62 min',
-        poster='https://m.media-amazon.com/images/M'
-        '/MV5BMmVhODQ1NmUtMzJiYi00MGNiLWExNmQtYmUxNGJmY2U5ZmJlXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg',
+        runtime="62 min",
+        poster="https://m.media-amazon.com/images/M"
+        "/MV5BMmVhODQ1NmUtMzJiYi00MGNiLWExNmQtYmUxNGJmY2U5ZmJlXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg",
     )
 
-    Genre.objects.create(name='Action')
-    Genre.objects.create(name='Adventure')
-    Genre.objects.create(name='Drama')
+    Genre.objects.create(name="Action")
+    Genre.objects.create(name="Adventure")
+    Genre.objects.create(name="Drama")
 
-    Actor.objects.create(first_name='Sean', last_name='Bean')
-    Actor.objects.create(first_name='Mark', last_name='Addy')
-    Actor.objects.create(first_name='Nikolaj', last_name='Coster-Waldau')
+    Actor.objects.create(first_name="Sean", last_name="Bean")
+    Actor.objects.create(first_name="Mark", last_name="Addy")
+    Actor.objects.create(first_name="Nikolaj", last_name="Coster-Waldau")
 
 
 @pytest.fixture()

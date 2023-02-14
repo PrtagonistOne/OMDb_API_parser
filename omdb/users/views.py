@@ -18,18 +18,18 @@ class CustomUserCreate(generics.CreateAPIView):
     def perform_create(self, serializer):
         queryset = self.user_model.objects.filter(username=self.request.user.username)
         if queryset.exists():
-            raise exceptions.ValidationError('User already exists')
+            raise exceptions.ValidationError("User already exists")
         serializer.save()
 
 
 class CustomUserLogout(views.APIView):
     def post(self, request):
         try:
-            refresh_token = RefreshToken(request.data.get('refresh_token', ''))
+            refresh_token = RefreshToken(request.data.get("refresh_token", ""))
         except TokenError:
-            return Response('Already logged out', status=status.HTTP_400_BAD_REQUEST)
+            return Response("Already logged out", status=status.HTTP_400_BAD_REQUEST)
 
         if refresh_token:
             refresh_token.blacklist()
 
-        return Response('Success', status=status.HTTP_200_OK)
+        return Response("Success", status=status.HTTP_200_OK)

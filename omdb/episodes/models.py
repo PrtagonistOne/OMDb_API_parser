@@ -11,7 +11,7 @@ class Episode(models.Model):
     season = models.IntegerField(null=True, unique=False)
 
     class Meta:
-        ordering = ['title']
+        ordering = ["title"]
 
     def __str__(self):
         return self.title
@@ -19,10 +19,10 @@ class Episode(models.Model):
 
 class Genre(models.Model):
     name = models.CharField(max_length=50)
-    episode = models.ManyToManyField(Episode, related_name='genre')
+    episode = models.ManyToManyField(Episode, related_name="genre")
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -31,14 +31,14 @@ class Genre(models.Model):
 class Actor(models.Model):
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
-    episode = models.ManyToManyField(Episode, related_name='actors')
+    episode = models.ManyToManyField(Episode, related_name="actors")
 
     @property
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
-        ordering = ['first_name']
+        ordering = ["first_name"]
 
     def __str__(self):
         return self.full_name
