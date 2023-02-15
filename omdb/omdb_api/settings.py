@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Application definition
-DEBUG = os.environ.get("DEBUG", 1)
+DEBUG = os.environ.get("DEBUG", 0)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -153,8 +153,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "/static/"
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CSRF_TRUSTED_ORIGINS = ["".join(os.environ.get("CSRF_TRUSTED_ORIGINS"))]
@@ -187,3 +185,9 @@ SIMPLE_JWT = {
 
 AUTH_USER_MODEL = "users.CustomUser"
 APPEND_SLASH = False
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
