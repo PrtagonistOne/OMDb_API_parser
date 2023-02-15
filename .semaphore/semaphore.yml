@@ -34,3 +34,30 @@ blocks:
             - python manage.py makemigrations
             - python manage.py migrate
             - 'pytest '
+      env_vars:
+        - name: CSRF_TRUSTED_ORIGINS
+          value: 'http://localhost:1337'
+        - name: SECRET_KEY
+          value: eKHrrVjm5VajHSUFmfBwkqiyHDKXRSeONqH5hNTsgxM4C2XCUh
+        - name: DJANGO_ENV
+          value: production
+        - name: OMDB_API_KEY
+          value: e321e8d1
+        - name: DEBUG
+          value: '0'
+        - name: SQL_ENGINE
+          value: django.db.backends.postgresql
+        - name: SQL_DATABASE
+          value: omdb_api_db
+        - name: SQL_USER
+          value: prota
+        - name: SQL_PASSWORD
+          value: SanchoPanso420
+        - name: SQL_HOST
+          value: postgres
+        - name: SQL_PORT
+          value: '5432'
+        - name: DJANGO_ALLOWED_HOSTS
+          value: 'localhost 127.0.0.1 [::1]'
+        - name: DATABASE
+          value: postgres
