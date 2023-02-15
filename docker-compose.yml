@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   omdb:
@@ -6,6 +6,11 @@ services:
       context: .
     volumes:
       - ./omdb:/src/omdb_root/omdb
+      - static_volume:/src/omdb_root/omdb/staticfiles
+      - media_volume:/src/omdb_root/omdb/mediafiles
+    command: gunicorn --chdir omdb omdb_api.wsgi:application --bind 0.0.0.0:7000
+    expose:
+      - 7000
     networks:
       - nginx_network
       - postgres
@@ -14,11 +19,13 @@ services:
     env_file:
       - config/omdb/ombd_dev_env
   nginx:
-    image: nginx:latest
+    image: nginx
     ports:
-      - '7000:80'
+      - '1337:80'
     volumes:
       - ./config/nginx/dev_conf.d:/etc/nginx/conf.d
+      - static_volume:/src/omdb_root/omdb/staticfiles
+      - media_volume:/src/omdb_root/omdb/mediafiles
     depends_on:
       - omdb
     networks:
@@ -26,8 +33,14 @@ services:
 
   postgres:
     image: postgres:11
-    env_file:
-      - config/db/db_env
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/db_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_DB_FILE: /run/secrets/db_name
     networks:
       - postgres
     volumes:
@@ -41,3 +54,14 @@ networks:
 
 volumes:
   postgres_db_volume:
+  static_volume:
+  media_volume:
+
+secrets:
+  db_name:
+    file: ./secrets/db_name.txt
+  db_password:
+    file: ./secrets/db_password.txt
+  db_user:
+    file: ./secrets/db_user.txt
+

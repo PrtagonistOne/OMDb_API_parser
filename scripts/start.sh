@@ -12,9 +12,4 @@ if [ "$DATABASE" = "postgres" ]
         echo "PostgreSQL started"
     fi
 
-
-
-# shellcheck disable=SC2164
-cd omdb/
-pytest
-python manage.py runserver 0.0.0.0:7000
+    exec "$@"

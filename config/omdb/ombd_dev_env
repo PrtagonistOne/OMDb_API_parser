@@ -1,8 +1,8 @@
-CSRF_TRUSTED_ORIGINS=http://localhost:7000
-SECRET_KEY=django-insecure-rqlts9l0m%+-jdoi3^84*367539@+ben@3e9#utu@#g)xs=ryd
-DJANGO_ENV=development
+CSRF_TRUSTED_ORIGINS=http://localhost:1337
+SECRET_KEY=eKHrrVjm5VajHSUFmfBwkqiyHDKXRSeONqH5hNTsgxM4C2XCUh
+DJANGO_ENV=production
 OMDB_API_KEY=e321e8d1
-DEBUG=1
+DEBUG=0
 SQL_ENGINE=django.db.backends.postgresql
 SQL_DATABASE=omdb_api_db
 SQL_USER=prota
