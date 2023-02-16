@@ -7,5 +7,7 @@ env/
 *.sqlite
 *.iml
 *.log
-secrets
-config
+secrets/*
+config/db*
+config/nginx/dev_conf.d/*
+config/omdb/*
