@@ -18,4 +18,3 @@ class EpisodeSerializer(serializers.ModelSerializer):
             "genre",
             "actors",
         ]
-        depth = 1

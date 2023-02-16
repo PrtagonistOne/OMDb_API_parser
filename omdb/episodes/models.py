@@ -2,13 +2,13 @@ from django.db import models
 
 
 class Episode(models.Model):
-    title = models.CharField(max_length=200, blank=False, unique=True)
-    episode_number = models.IntegerField(null=True, unique=False)
-    released = models.DateField(blank=False, unique=False)
-    imdb_rating = models.FloatField(null=True, unique=False)
-    runtime = models.CharField(max_length=10, unique=False, blank=False)
-    poster = models.CharField(max_length=500, unique=True, blank=False)
-    season = models.IntegerField(null=True, unique=False)
+    title = models.CharField(max_length=200, blank=False)
+    episode_number = models.IntegerField(null=True)
+    released = models.DateField(blank=False)
+    imdb_rating = models.FloatField(null=True)
+    runtime = models.CharField(max_length=10, blank=False)
+    poster = models.CharField(max_length=500, blank=False)
+    season = models.IntegerField(null=True)
 
     class Meta:
         ordering = ["title"]
