@@ -6,3 +6,6 @@ env/
 .DS_Store
 *.sqlite
 *.iml
+*.log
+secrets
+config
